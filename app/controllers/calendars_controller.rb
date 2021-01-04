@@ -15,7 +15,7 @@ class CalendarsController < ApplicationController
   private
 
   def plan_params
-    params.permit(:date, :plan)
+    params.require(:plan).permit(:date, :plan)
   end
 
   def get_week
@@ -41,7 +41,7 @@ class CalendarsController < ApplicationController
         wday_num = wday_num -7
       end
 
-      days = { month: (@todays_date + x).month, date: @todays_date.day + x, plans: today_plans, wday: wdays[(@todays_date+ x).wday ] }
+      days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: wdays[(@todays_date+ x).wday ] }
 
 
       #days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: today_plans}
